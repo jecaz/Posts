@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PlayItem } from '../models/play-item.model';
-import { PLAYLIST } from '../api.data';
+import { PLAYLIST } from '../mockApi.data';
 
 @Injectable({
   providedIn: 'root',

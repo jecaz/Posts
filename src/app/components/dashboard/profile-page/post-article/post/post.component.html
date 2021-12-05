@@ -1,59 +1,42 @@
 <div *ngIf="post" class="post position-relative">
+  <div class="post-badges">
+    <ng-container *ngFor="let badge of post.badges">
+      <span class="post-badges-icon">
+        <i class="{{ badge }}" [style.zoom]="0.9"></i>
+      </span>
+    </ng-container>
+  </div>
   <div>
-    <div class="post-badges">
-      <ng-container *ngFor="let badge of post.badges">
-        <span class="post-badges-icon">
-          <i class="{{ badge }}" [style.zoom]="0.9"></i>
-        </span>
-      </ng-container>
-    </div>
-    <div *ngIf="post?.postImage" class="post-cover-img">
-      <img [src]="post.postImage" alt="Post image" />
-    </div>
-    <div>
-      <div
-        class="
-          post-header
-          d-flex
-          justify-content-between
-          position-relative
-          pl-4
-        "
-      >
-        <span class="timeline-dot position-absolute d-inline-block"></span>
-        <div class="post-header-meta">
-          <a href="#">
-            <img
-              class="post-header-meta-icon"
-              [src]="post.userProfileIcon"
-              alt="User icon"
-            />
-          </a>
-          <h3 class="post-header-meta-user">
-            <a class="post-header-meta-user-name" href="#">{{
-              post?.postUsername
-            }}</a>
-            <br />
-            <span class="post-header-meta-user-time"
-              >{{ post?.timeAgo }} hours ago</span
-            >
-          </h3>
-        </div>
-        <button
-          class="dot-icon"
-          [class.shared-dot-icon]="post?.sharedPost?.postUsername"
-        >
-          <i class="fas fa-ellipsis-h"></i>
-        </button>
+    <div
+      class="post-header d-flex justify-content-between position-relative pl-4"
+    >
+      <span class="timeline-dot position-absolute d-inline-block"></span>
+      <div class="post-header-meta">
+        <a href="#">
+          <img
+            class="user-icon"
+            [src]="'../../../../assets/images/users-profile-icon.png'"
+            alt="User icon"
+          />
+        </a>
+        <h3 class="post-header-meta-user">
+          <a class="post-header-meta-user-name" href="#">{{
+            post?.username
+          }}</a>
+          <br />
+          <span class="post-header-meta-user-time"
+            >{{ post?.timeAgo }} hours ago</span
+          >
+        </h3>
       </div>
-      <div class="post-body pl-4 pt-5">
-        <p>{{ post.description }}</p>
-      </div>
+      <button class="dot-icon">
+        <i class="fas fa-ellipsis-h"></i>
+      </button>
+    </div>
+    <div class="post-body pl-4 pt-5">
+      <p>{{ post.body }}</p>
     </div>
   </div>
-  <!-- <div *ngIf="post.sharedPost" id="subpost">
-    <app-post #subpost [post]="post.sharedPost"></app-post>
-  </div> -->
   <div *ngIf="post.likes" class="post-likes">
     <div class="post-likes-friends">
       <span style="display: flex; align-items: center">
@@ -81,16 +64,25 @@
       </span>
     </div>
     <div class="post-likes-actions">
-      <span class="post-likes-actions-comment">
+      <span
+        class="post-likes-actions-comment"
+        (click)="commentsVisibility = !commentsVisibility"
+      >
         <i class="far fa-comment-alt"></i>
       </span>
-      <span class="post-likes-actions-comment-count">{{ post.message }}</span>
-      <span class="post-likes-actions-reply" style="">
+      <span class="post-likes-actions-comment-count">{{
+        post.comments.length
+      }}</span>
+      <span class="post-likes-actions-reply">
         <i class="fas fa-retweet"></i>
       </span>
-      <span class="post-likes-actions-reply-count" style="">{{
-        post.reply
-      }}</span>
+      <span class="post-likes-actions-reply-count">{{ 2 }}</span>
     </div>
+  </div>
+
+  <div *ngIf="commentsVisibility" class="border-top pt-4 mt-4">
+    <ng-container *ngFor="let comment of post.comments">
+      <comment [comment]="comment"></comment>
+    </ng-container>
   </div>
 </div>

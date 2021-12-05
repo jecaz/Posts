@@ -6,10 +6,11 @@ export interface Post {
   id: number;
   title: string;
   userId: number;
-  userName: string;
   comments: Comment[];
   badges: Badge[];
   likes: any[];
+  username: string;
+  timeAgo: number;
 }
 
 export class MockPost {

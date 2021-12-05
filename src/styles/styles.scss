@@ -20,6 +20,11 @@ body {
   margin-top: 2rem;
 }
 
+.user-icon {
+  width: 3.5rem;
+  border-radius: 50%;
+}
+
 @include responsive-below(sm) {
   .card {
     margin-top: 1.5rem;

@@ -1,0 +1,11 @@
+<div *ngIf="comment" class="comment row py-4 m-0">
+  <div class="col-2 text-center">
+    <a href="#">
+      <img class="user-icon" [src]="comment.profileImage" alt="User icon" />
+    </a>
+  </div>
+  <div class="comment-content col-10 bg-light p-4">
+    <div class="font-weight-bold mb-4">{{ comment.name }}</div>
+    <p>{{ comment.body }}</p>
+  </div>
+</div>

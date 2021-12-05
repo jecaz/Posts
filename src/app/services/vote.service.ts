@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActorVote } from '../models/actor-vote.model';
-import { ACTOR_VOTERS } from '../api.data';
+import { ACTOR_VOTERS } from '../mockApi.data';
 
 @Injectable({
   providedIn: 'root',

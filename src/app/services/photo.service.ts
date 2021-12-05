@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Photo } from '../models/photo.model';
-import { PHOTOS } from '../api.data';
+import { PHOTOS } from '../mockApi.data';
 
 @Injectable({
   providedIn: 'root',

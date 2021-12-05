@@ -1,16 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ACTIVE } from 'src/app/api.data';
-import { MockUser } from 'src/app/models/user.model';
-import { UserService } from '../../../services/user.service';
-import { ProfilePageComponent } from './profile-page.component';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ACTIVE } from "src/app/mockApi.data";
+import { MockUser } from "src/app/models/user.model";
+import { UserService } from "../../../services/user.service";
+import { ProfilePageComponent } from "./profile-page.component";
 
 const mockLoggedUser = new MockUser({
   id: 1,
-  username: 'James Splegel',
-  nickname: 'Space cowboy',
-  profileIcon: '../../../../assets/images/users-profile-icon.png',
-  city: 'San Francisco',
-  country: 'CA',
+  username: "James Splegel",
+  nickname: "Space cowboy",
+  profileIcon: "../../../../assets/images/users-profile-icon.png",
+  city: "San Francisco",
+  country: "CA",
   state: ACTIVE,
 });
 
@@ -21,7 +21,7 @@ class MockUserService {
   getUserById() {}
 }
 
-describe('ProfilePageComponent', () => {
+describe("ProfilePageComponent", () => {
   let component: ProfilePageComponent;
   let fixture: ComponentFixture<ProfilePageComponent>;
   let mockUserService: UserService;
@@ -40,7 +40,7 @@ describe('ProfilePageComponent', () => {
     mockUserService = TestBed.inject(UserService);
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

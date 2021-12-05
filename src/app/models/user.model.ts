@@ -1,3 +1,9 @@
+export interface User {
+  id: number;
+  name: string;
+  username: string;
+}
+
 export class MockUser {
   private _id: number;
   private _username: string;
