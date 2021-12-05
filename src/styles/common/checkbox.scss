@@ -1,0 +1,33 @@
+@import "./variables";
+
+.checkbox-custom {
+  position: absolute;
+  opacity: 0;
+}
+
+.checkbox-custom-label {
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox-custom + .checkbox-custom-label:before {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.2rem;
+  width: 2.3rem;
+  height: 2.3rem;
+  content: "";
+  background: $checkbox-bg-color;
+  border: 0.2rem solid $checkbox-border-color;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+  width: 2.3rem;
+  height: 2.3rem;
+  color: $red-color;
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}

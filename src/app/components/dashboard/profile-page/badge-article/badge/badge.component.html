@@ -1,0 +1,6 @@
+<button *ngIf="badge" id="{{badge.name}}" class="badge-btn notification-container" >
+  <img [src]="badge.icon" alt="{{'Badge ' + badge.name + ' icon'}}">
+  <span *ngIf="badge.notification != 0" class="notification-counter notification-counter-{{badge.name}}">
+    {{badge.notification}}
+  </span>
+</button>

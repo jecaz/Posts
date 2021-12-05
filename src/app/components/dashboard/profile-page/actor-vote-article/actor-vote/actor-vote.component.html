@@ -1,0 +1,39 @@
+<div class="vote">
+  <label class="container">
+    <span class="vote-radio-btn-label ml-4">{{ actorVote.actor }}</span>
+    <input
+      type="radio"
+      [checked]="actorVote.actor == 'Ben Robertson'"
+      name="radio"
+    />
+    <span class="checkmark"></span>
+  </label>
+  <span class="vote-percentage">{{ actorVote.votePercentage }}%</span>
+</div>
+<progress-bar [progress]="actorVote.votePercentage"></progress-bar>
+<div class="vote-friends-number">
+  {{ actorVote.voters.length }} friends voted for this
+</div>
+<div *ngIf="actorVote.id === 1" class="vote-friends-icons">
+  <ng-container *ngFor="let voter of actorVote.voters; let i = index">
+    <img
+      *ngIf="i < 9"
+      [src]="voter"
+      alt="Voter icon"
+      id="{{ 'thomas' + (i + 1) }}"
+    />
+    <span class="vote-friends-icons-count" *ngIf="i == 9">
+      <span>+{{ actorVote.voters.length - i }}</span>
+    </span>
+  </ng-container>
+</div>
+<div *ngIf="actorVote.id === 2" class="vote-friends-icons">
+  <ng-container *ngFor="let voter of actorVote.voters; let i = index">
+    <img [src]="voter" alt="Voter icon" id="{{ 'ben' + (i + 1) }}" />
+  </ng-container>
+</div>
+<div *ngIf="actorVote.id === 3" class="vote-friends-icons">
+  <ng-container *ngFor="let voter of actorVote.voters; let i = index">
+    <img [src]="voter" alt="Voter icon" id="{{ 'michael' + (i + 1) }}" />
+  </ng-container>
+</div>

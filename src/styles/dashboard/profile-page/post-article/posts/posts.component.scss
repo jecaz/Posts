@@ -1,0 +1,27 @@
+@import "../../../../common/variables";
+@import "../../../../common/mixins";
+
+.page-button {
+  margin: 3rem auto 0 auto;
+  width: 3rem;
+
+  &-dot {
+    width: $full-width;
+    height: 3rem;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    color: white;
+    background-color: $button-dot-bg-color;
+
+    &-icon {
+      zoom: 0.8;
+    }
+  }
+}
+
+@include responsive-below(sm) {
+  .page-button {
+    display: none;
+  }
+}

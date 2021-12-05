@@ -1,0 +1,26 @@
+@import "../../../../common/variables";
+
+.actor-voters-content {
+  padding: 2rem;
+  font-size: 1rem;
+
+  &-vote-btn {
+    padding-top: 3rem;
+
+    .btn-outline-secondary {
+      padding: 1rem 0;
+      width: $full-width;
+      border: 0.1rem solid rgba(0, 0, 0, 0.125);
+      font-weight: $font-weight-basic;
+
+      &:hover {
+        background-color: $gradient-color;
+        color: inherit;
+      }
+    }
+  }
+
+  &-title {
+    line-height: 1.4;
+  }
+}

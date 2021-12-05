@@ -1,0 +1,46 @@
+@import "../../../../common/variables";
+@import "../../../../common/mixins";
+
+@include vote-icon(thomas);
+@include vote-icon(ben);
+@include vote-icon(michael);
+
+.vote {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+
+  &-radio-btn-label,
+  &-percentage {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  &-radio-btn-label {
+    vertical-align: middle;
+  }
+
+  &-friends-number {
+    margin: 0.5rem 0 1.3rem 0;
+  }
+
+  &-friends-icons {
+    @include friends-icon();
+
+    &-count {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 11.8rem;
+      z-index: 12;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 0.2rem solid $primary-color;
+      border-radius: 50%;
+      background-color: rgba(245, 65, 29, 0.8);
+      color: $primary-color;
+    }
+  }
+}

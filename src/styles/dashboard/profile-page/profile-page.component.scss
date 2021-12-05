@@ -1,0 +1,263 @@
+@import "../../common/variables";
+@import "../../common/mixins";
+
+.profile {
+  padding: 1.2rem 1.2rem 0;
+  position: relative;
+  box-shadow: 0 0 0.7rem $shadow-color;
+  background-color: $primary-color;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+
+  &-cover {
+    display: block;
+    height: 31.5rem;
+    margin: -1.2rem -1.2rem 0;
+
+    &-img {
+      width: 100%;
+      height: inherit;
+      object-fit: cover;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+  }
+
+  &-cover-container {
+    height: 6.5rem;
+
+    .user-section {
+      margin: 0 auto;
+      display: flex;
+      position: relative;
+      z-index: 2;
+      width: max-content;
+
+      &-content {
+        display: flex;
+        flex-direction: column;
+
+        .user-icon {
+          margin-bottom: 0.7rem;
+          align-self: center;
+          cursor: pointer;
+
+          img {
+            border: 0.3rem solid $primary-color;
+            margin: -5.8rem auto 0;
+            width: 7.2rem;
+            height: 7.2rem;
+            background-color: $primary-color;
+            border-radius: 49.9%;
+            box-sizing: border-box;
+          }
+        }
+
+        .user-name {
+          color: $secondary-color;
+          text-align: center;
+          text-decoration: none;
+          cursor: pointer;
+
+          &--full {
+            font-size: 1.4rem;
+            font-weight: $font-weight-basic;
+          }
+
+          &--city {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    .profile-navbar {
+      position: relative;
+      bottom: 4.7rem;
+      z-index: 1;
+
+      &-list {
+        padding-top: 1rem;
+
+        &-item {
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          text-align: center;
+          font-size: 1.1rem;
+
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+
+          .fa-ellipsis-h {
+            color: $shadow-color;
+          }
+        }
+      }
+
+      &-buttons {
+        position: absolute;
+        right: 0;
+        bottom: 3.4rem;
+
+        .smile,
+        .message,
+        .connection {
+          margin: 0 1rem;
+          padding: 1.1rem;
+          border-radius: 50%;
+          color: $primary-color;
+          zoom: 0.9;
+          cursor: pointer;
+        }
+
+        .smile {
+          @include hover-btn-state($smile-btn-color-hover);
+          background-color: $app-third-color;
+        }
+
+        .message {
+          @include hover-btn-state($message-btn-color-hover);
+          background-color: $message-btn-color;
+        }
+
+        .connection {
+          @include hover-btn-state($connection-btn-color-hover);
+          transform: rotate(90deg);
+          background-color: $connection-btn-color;
+        }
+      }
+    }
+  }
+}
+
+.profile-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rem;
+
+  &--left,
+  &--right {
+    display: inline-block;
+    width: $full-width * 0.25 - 2;
+    min-width: 23rem;
+  }
+
+  &--middle {
+    display: inline-block;
+    margin: 0 3rem;
+    width: $full-width * 0.5;
+  }
+}
+
+.active-link {
+  font-weight: $font-weight-basic;
+}
+
+@include responsive-below(lg) {
+  .profile {
+    &-section {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include responsive-below(md) {
+  .profile {
+    &-section {
+      &--left,
+      &--right {
+        display: none;
+      }
+
+      &--middle {
+        margin: 0 auto;
+        width: 80%;
+      }
+    }
+  }
+}
+
+@include responsive-below(sm) {
+  .profile {
+    &-cover {
+      height: 15rem;
+    }
+
+    &-cover-container {
+      display: flex;
+      flex-direction: column;
+      height: 27.5rem;
+
+      .user-section {
+        margin-top: 11rem;
+        order: 2;
+
+        &-content {
+          .user-icon {
+            img {
+              width: 8.2rem;
+              height: 8.2rem;
+            }
+          }
+        }
+      }
+
+      .profile-navbar {
+        margin: 0 auto;
+        order: 1;
+        top: 1rem;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        min-width: 23rem;
+        width: 100%;
+
+        &-list {
+          width: 39%;
+          margin: 1rem auto 0 auto;
+          padding-top: 0;
+          max-width: 40rem;
+          min-width: 30rem;
+
+          &-item {
+            padding-left: 2rem;
+            padding-right: 2rem;
+          }
+
+          &-item:nth-last-child(3) {
+            margin-left: 0.2rem;
+          }
+
+          &-item:nth-last-child(-n + 2) {
+            margin-left: 0.8rem;
+          }
+
+          .spacer {
+            display: none;
+          }
+        }
+
+        &-buttons {
+          bottom: 6.8rem;
+          min-width: 17.3rem;
+
+          display: flex;
+          justify-content: center;
+          width: 100%;
+
+          .connection {
+            padding: 1.2rem;
+          }
+        }
+      }
+    }
+
+    &-section {
+      &--middle {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<div *ngIf="playitem" class="play-item" [ngClass]="{'first-playitem': playitem.id === 1, 'last-playitem': playitem.id === 5}">
+  <div class="play-item-song">
+    <span>{{playitem.id}}</span>
+    <span class="play-item-song-icon">
+      <img [src]="playitem.icon" alt="Song cover image" [class.icon-frame]="playitem.id === 4 || playitem.id === 5">
+    </span>
+    <span class="play-item-song-details">
+      <span class="play-item-song-details-name">{{playitem.song}}</span><br>
+      <span>{{playitem.singer}}</span>
+    </span>
+  </div>
+  <div>{{playitem.songDuration}}</div>
+</div>

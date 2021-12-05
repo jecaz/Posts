@@ -1,0 +1,165 @@
+@import "./variables";
+
+@mixin hover-state($opacity, $color, $delay) {
+  opacity: $opacity;
+  color: $color;
+  transition: all $delay linear;
+}
+
+@mixin font-style($size, $family) {
+  font-family: $family, sans-serif;
+  font-size: $size;
+}
+
+@mixin input-icon($icon) {
+  &::after {
+    position: absolute;
+    right: 0;
+    top: 30%;
+    margin-right: 1.5rem;
+    font-family: "Font Awesome 5 Free";
+    content: $icon;
+    font-weight: 900;
+    color: $gray-600;
+  }
+}
+
+@mixin button-style($class-name, $bg-color, $bg-hover-color) {
+  button.#{$class-name} {
+    @include hover-btn-state($bg-hover-color);
+    padding: 0.9rem 0;
+    background-color: $bg-color;
+    font-size: 1.3rem;
+  }
+}
+
+@mixin hover-btn-state($bg-hover-color) {
+  &:hover {
+    background-color: $bg-hover-color;
+    transition: all 220ms linear;
+  }
+}
+
+@mixin notification-container() {
+  .notification-container {
+    color: $primary-color;
+    position: relative;
+
+    .fa-grin,
+    .fa-comments,
+    .fa-bolt {
+      zoom: 1.5;
+    }
+  }
+
+  .notification-counter {
+    position: absolute;
+    border-radius: 50%;
+    font: 0.7rem Verdana;
+    color: $primary-color;
+    opacity: 1;
+  }
+}
+
+@mixin notification-counter(
+  $counter-name,
+  $bottom,
+  $left,
+  $width,
+  $height,
+  $padding,
+  $bg-color: ""
+) {
+  .notification-counter-#{$counter-name} {
+    @if $bg-color != "" {
+      background-color: $bg-color;
+    }
+    bottom: $bottom;
+    left: $left;
+    width: $width;
+    height: $height;
+    padding: $padding;
+  }
+}
+
+@mixin nav-item-hover($direction1: "", $direction2: "", $direction3: "") {
+  padding: 1.5rem 2rem;
+  @if $direction1 != "" {
+    background: linear-gradient(to $direction1, #f0f0f0 50%, #fefefe 50%)
+      $direction2
+      bottom;
+  } @else {
+    background: linear-gradient(to right, #f0f0f0 50%, #fefefe 50%)
+      right
+      bottom;
+  }
+  background-size: 200% 100%;
+  transition: all ease 320ms;
+  cursor: pointer;
+
+  &:hover {
+    @if $direction1 != "" {
+      background-position: $direction3 bottom;
+    } @else {
+      background-position: left bottom;
+    }
+  }
+}
+
+@mixin input-style($padding, $bg-color, $color, $bg-color-focus, $color-focus) {
+  padding: $padding;
+  width: $full-width;
+  background-color: $bg-color;
+  -webkit-transition: all 220ms ease-in-out;
+  color: $color;
+  outline: none;
+
+  &:focus {
+    background-color: $bg-color-focus;
+    color: $color-focus;
+    box-shadow: 0 0 0.5rem rgba(81, 203, 238, 1);
+    border: 0.1rem solid rgba(81, 203, 238, 1);
+  }
+}
+
+@mixin vote-icon($img-id) {
+  @for $i from 1 through length($position) {
+    //@debug $i;
+    img[id^="#{$img-id}#{$i}"] {
+      left: nth($position, $i);
+      z-index: $i;
+      border: 0.2rem solid $primary-color;
+      background-color: $primary-color;
+    }
+  }
+}
+
+@mixin friends-icon() {
+  position: relative;
+  height: 2.5rem;
+
+  img {
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+  }
+}
+
+@mixin responsive-below($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: $breakpoint-value) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @error 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}

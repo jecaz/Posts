@@ -1,0 +1,192 @@
+@import "../../../../common/variables";
+@import "../../../../common/mixins";
+
+@include vote-icon(like1);
+@include vote-icon(like2);
+
+.post {
+  margin: 2rem;
+
+  &-badges {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: -3.3rem;
+
+    &-icon {
+      display: flex;
+      justify-content: center;
+      margin: 0.3rem 0;
+      padding: 0.7rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      background: $post-primary-color;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  &-cover-img {
+    height: 15rem;
+
+    img {
+      width: $full-width;
+      height: $full-height;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+  }
+
+  &-header {
+    border-left: 0.1rem solid rgba(0, 0, 0, 0.125);
+
+    .timeline-dot {
+      width: 0.9rem;
+      height: 0.9rem;
+      border-radius: 50%;
+      border: 0.3rem solid $button-dot-bg-color;
+      background: $primary-color;
+      top: 3.3rem;
+      left: -0.5rem;
+    }
+
+    &-meta {
+      &-icon {
+        width: 3.5rem;
+        border-radius: 50%;
+      }
+
+      &-user {
+        display: inline-block;
+        margin-left: 1.5rem;
+
+        &-name {
+          color: inherit;
+          text-decoration: none;
+          font-size: 1.2rem;
+          font-weight: $font-weight-basic;
+        }
+
+        .shared-user {
+          font-size: 1.2rem;
+
+          &-link {
+            color: $app-primary-color;
+            font-weight: $font-weight-basic;
+            text-decoration: none;
+          }
+        }
+
+        &-time {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .dot-icon {
+      background: $primary-color;
+      border: none;
+      outline: none;
+      color: $shadow-color;
+    }
+  }
+
+  &-body {
+    line-height: 1.3;
+    font-size: 1.2rem;
+    border-left: 0.1rem solid rgba(0, 0, 0, 0.125);
+  }
+
+  &-likes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.3rem;
+    padding-top: 2rem;
+    border-top: 0.1rem solid $post-border-color;
+
+    &-friends {
+      display: flex;
+      align-items: center;
+
+      &-heart-icon,
+      &-heart-count {
+        color: $post-primary-color;
+      }
+
+      &-heart-icon {
+        margin-right: 0.8rem;
+      }
+
+      &-heart-count {
+        font-size: 1.1rem;
+      }
+
+      &-icons {
+        @include friends-icon();
+        margin: 0 1.5rem;
+        width: 7.5rem;
+      }
+
+      &-names {
+        line-height: 1.5;
+        font-size: 1rem;
+
+        .visible-names {
+          font-weight: $font-weight-basic;
+        }
+      }
+    }
+
+    &-actions {
+      display: flex;
+      align-items: center;
+
+      &-comment,
+      &-reply {
+        margin-right: 0.8rem;
+        color: $post-primary-color;
+      }
+
+      &-comment-count,
+      &-reply-count {
+        font-size: 1.1rem;
+      }
+
+      &-comment-count {
+        margin-right: 1.2rem;
+      }
+    }
+  }
+}
+
+@include responsive-below(sm) {
+  .post {
+    &-badges {
+      right: 0;
+      flex-direction: row;
+      top: -3.1rem;
+
+      &-icon {
+        margin: 0 0.2rem;
+      }
+    }
+
+    &-likes {
+      flex-direction: column;
+
+      &-friends {
+        flex-direction: column;
+        align-items: flex-start;
+
+        &-icons {
+          margin: 1rem 0 1.5rem 0;
+        }
+
+        &-names {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

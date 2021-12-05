@@ -1,0 +1,74 @@
+@import "../../../../common/variables";
+@import "../../../../common/mixins";
+
+@include notification-container();
+@include notification-counter(
+  smile,
+  1.8rem,
+  2rem,
+  1.5rem,
+  1.5rem,
+  0.25rem 0.2rem,
+  $badge-notification-primary-color
+);
+@include notification-counter(
+  bolt,
+  1.8rem,
+  2rem,
+  1.5rem,
+  1.5rem,
+  0.25rem 0.2rem,
+  $badge-notification-secondary-color
+);
+@include notification-counter(
+  calendar,
+  1.8rem,
+  2rem,
+  1.5rem,
+  1.5rem,
+  0.25rem 0.2rem,
+  $badge-notification-third-color
+);
+
+.notification-counter {
+  box-shadow: 0 0.6rem 0.5rem 0.2rem rgba(0, 0, 0, 0.3);
+}
+
+.badge-btn {
+  padding: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+
+  img {
+    width: 3rem;
+    vertical-align: middle;
+  }
+}
+
+#smile,
+#cd,
+#bolt,
+#edit {
+  img {
+    width: 1.5rem;
+  }
+}
+
+#smile {
+  background: linear-gradient(to bottom, $badge-color-3, $badge-color-4);
+}
+
+#cd {
+  background: linear-gradient(to bottom, $badge-color-1, $badge-color-2);
+}
+
+#bolt {
+  background: linear-gradient(to bottom, $badge-color-1, $badge-color-2);
+}
+
+#edit {
+  background: linear-gradient(to bottom, $badge-color-5, $badge-color-6);
+}

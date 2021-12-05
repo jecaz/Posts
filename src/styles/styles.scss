@@ -1,0 +1,27 @@
+@import "~bootstrap/scss/bootstrap";
+@import "./common/variables";
+@import "./common/mixins";
+@import "./common/checkbox";
+@import "./common/radio-button";
+@import "~bootstrap/scss/bootstrap";
+@import "./reset";
+@import "dashboard/profile-page/badge-article/badges/badges.component";
+// @import "./dashboard/profile-page/profile-page.component";
+
+html {
+  @include font-style(62.5%, "Roboto");
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+.card {
+  margin-top: 2rem;
+}
+
+@include responsive-below(sm) {
+  .card {
+    margin-top: 1.5rem;
+  }
+}

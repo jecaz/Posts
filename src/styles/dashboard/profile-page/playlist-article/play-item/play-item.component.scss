@@ -1,0 +1,47 @@
+@import "../../../../common/variables";
+@import "../../../../common/mixins";
+
+.play-item {
+  @include hover-btn-state($gradient-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem 1rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &-song {
+    display: flex;
+    align-items: center;
+
+    &-icon {
+      display: inline-block;
+      margin: 0 1.5rem;
+
+      img {
+        width: 4rem;
+        border-radius: 5px;
+      }
+    }
+
+    &-details {
+      line-height: 1.5;
+
+      &-name {
+        font-weight: $font-weight-basic;
+      }
+    }
+  }
+}
+
+.icon-frame {
+  border: 0.1rem solid $gradient-color;
+}
+
+.first-playitem {
+  margin-top: 1rem;
+}
+
+.last-playitem {
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,79 @@
+<div class="profile">
+  <div class="profile-cover">
+    <img
+      class="profile-cover-img"
+      src="../../../../assets/images/sunset.jpg"
+      alt="Cover picture"
+    />
+  </div>
+  <div class="profile-cover-container">
+    <div class="user-section">
+      <div class="user-section-content">
+        <a class="user-icon">
+          <img [src]="currentUser.profileIcon" alt="Profile picture" />
+        </a>
+        <a class="user-name">
+          <span class="user-name--full">{{ currentUser.username }}</span
+          ><br />
+          <span class="user-name--city"
+            >{{ currentUser.city }}, {{ currentUser.country }}</span
+          >
+        </a>
+      </div>
+    </div>
+    <div class="profile-navbar">
+      <ul class="row profile-navbar-list">
+        <li class="col profile-navbar-list-item">
+          <a
+            routerLink="/profile"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Timeline</a
+          >
+        </li>
+        <li class="col profile-navbar-list-item">
+          <a routerLink="#" routerLinkActive="active-link">About</a>
+        </li>
+        <li class="col profile-navbar-list-item">
+          <a routerLink="#" routerLinkActive="active-link">Friends</a>
+        </li>
+        <li class="col profile-navbar-list-item spacer"></li>
+        <li class="col profile-navbar-list-item">
+          <a routerLink="#" routerLinkActive="active-link">Photos</a>
+        </li>
+        <li class="col profile-navbar-list-item">
+          <a routerLink="#" routerLinkActive="active-link">Videos</a>
+        </li>
+        <li class="col profile-navbar-list-item">
+          <i class="fas fa-ellipsis-h"></i>
+        </li>
+      </ul>
+      <div class="profile-navbar-buttons">
+        <i class="far fa-meh smile"></i>
+        <i class="fa fa-comments message"></i>
+        <i class="fas fa-sliders-h connection"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="profile-section">
+  <div class="profile-section--left">
+    <div class="card badges-card">
+      <badges></badges>
+    </div>
+    <div class="card">
+      <play-items></play-items>
+    </div>
+  </div>
+  <div class="profile-section--middle">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="profile-section--right">
+    <div class="card photos-card">
+      <photos></photos>
+    </div>
+    <div class="card">
+      <actor-votes></actor-votes>
+    </div>
+  </div>
+</section>

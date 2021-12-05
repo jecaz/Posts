@@ -1,0 +1,10 @@
+@import "../../common/variables";
+
+.article-card {
+  &-title {
+    padding: 2rem 0 1.5rem 2rem;
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.125);
+    font-size: 1.2rem;
+    font-weight: $font-weight-basic;
+  }
+}

@@ -1,0 +1,6 @@
+<article *ngIf="title" class="article-card">
+  <h2 class="article-card-title">{{title}}</h2>
+  <div class="article-card-content">
+    <ng-content select="[card-body]"></ng-content>
+  </div>
+</article>
