@@ -13,12 +13,13 @@
       </a>
     </div>
     <div class="header-content d-flex justify-content-between">
-      <div class="header-left d-flex">
+      <div class="header-left d-none d-lg-flex">
         <div class="header-left-search align-self-center">
           <span class="text-uppercase py-0 px-5">Profile page</span>
           <div id="search" class="d-inline-block position-relative">
             <input
               #search
+              [ngModel]="searchValue"
               class="header-left-search--input border-0"
               type="text"
               placeholder="Search here people or pages..."
@@ -31,7 +32,7 @@
                     let post of posts
                       | filter: searchValue:['title', 'username', 'body']
                   "
-                  (click)="goToPage('post/' + post.id)"
+                  (click)="goToPage('post/' + post.id); searchValue = ''"
                 >
                   {{ post.title }}
                 </li>
@@ -42,8 +43,8 @@
         </div>
       </div>
       <div class="header-right d-flex justify-content-end">
-        <nav class="header-right-nav d-inline-block">
-          <ul class="header-right-nav-list d-flex justify-content-end">
+        <nav class="header-right-nav">
+          <ul class="header-right-nav-list d-flex">
             <li
               class="header-right-nav-list-item align-self-center text-center"
             >

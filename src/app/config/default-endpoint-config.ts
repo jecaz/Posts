@@ -5,7 +5,7 @@ export const defaultApiConfig: ApiConfig = {
   backend: {
     endpoints: {
       posts: '/posts',
-      post: '/post/',
+      // post: '/post/',
       comments: '/comments',
       users: '/users',
       baseUrl: environment.baseUrl,

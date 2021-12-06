@@ -34,52 +34,16 @@
       </button>
     </div>
     <div class="post-body pl-4 pt-5">
+      <h4 class="font-weight-bold mb-3">{{ post.title }}</h4>
       <p>{{ post.body }}</p>
     </div>
   </div>
-  <div *ngIf="post.likes" class="post-likes">
-    <div class="post-likes-friends">
-      <span style="display: flex; align-items: center">
-        <span class="post-likes-friends-heart-icon"
-          ><i class="far fa-heart"></i
-        ></span>
-        <span class="post-likes-friends-heart-count">{{
-          post?.likes?.length
-        }}</span>
-      </span>
-      <div class="post-likes-friends-icons">
-        <ng-container *ngFor="let like of post.likes; let i = index">
-          <img
-            *ngIf="i < 5"
-            [src]="like.icon"
-            alt="User icon"
-            id="{{ 'like1' + (i + 1) }}"
-          />
-        </ng-container>
-      </div>
-      <span class="post-likes-friends-names">
-        <span class="visible-names">{{ getLikeFriendsNames(post) }}</span
-        >{{ " and" }}<br />
-        <span>{{ post?.likes?.length - 2 }} more liked this</span>
-      </span>
-    </div>
-    <div class="post-likes-actions">
-      <span
-        class="post-likes-actions-comment"
-        (click)="commentsVisibility = !commentsVisibility"
-      >
-        <i class="far fa-comment-alt"></i>
-      </span>
-      <span class="post-likes-actions-comment-count">{{
-        post.comments.length
-      }}</span>
-      <span class="post-likes-actions-reply">
-        <i class="fas fa-retweet"></i>
-      </span>
-      <span class="post-likes-actions-reply-count">{{ 2 }}</span>
-    </div>
+  <div class="pt-4 mt-4 border-top">
+    <actions
+      [post]="post"
+      (commentState)="commentsVisibility = $event"
+    ></actions>
   </div>
-
   <div *ngIf="commentsVisibility" class="border-top pt-4 mt-4">
     <ng-container *ngFor="let comment of post.comments">
       <comment [comment]="comment"></comment>

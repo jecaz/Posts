@@ -32,4 +32,12 @@ export class UserService {
       )
       .pipe(catchError((error) => throwError(error)));
   }
+
+  getUser(userId: number) {
+    return this.http
+      .get<User>(
+        `${this.apiConfig.backend.endpoints.baseUrl}${this.apiConfig.backend.endpoints.users}/${userId}`
+      )
+      .pipe(catchError((error) => throwError(error)));
+  }
 }

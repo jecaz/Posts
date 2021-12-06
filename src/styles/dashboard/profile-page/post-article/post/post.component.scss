@@ -1,9 +1,6 @@
 @import "../../../../common/variables";
 @import "../../../../common/mixins";
 
-@include vote-icon(like1);
-@include vote-icon(like2);
-
 .post {
   margin: 2rem;
 
@@ -97,68 +94,6 @@
     font-size: 1.2rem;
     border-left: 0.1rem solid rgba(0, 0, 0, 0.125);
   }
-
-  &-likes {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2.3rem;
-    padding-top: 2rem;
-    border-top: 0.1rem solid $post-border-color;
-
-    &-friends {
-      display: flex;
-      align-items: center;
-
-      &-heart-icon,
-      &-heart-count {
-        color: $post-primary-color;
-      }
-
-      &-heart-icon {
-        margin-right: 0.8rem;
-      }
-
-      &-heart-count {
-        font-size: 1.1rem;
-      }
-
-      &-icons {
-        @include friends-icon();
-        margin: 0 1.5rem;
-        width: 7.5rem;
-      }
-
-      &-names {
-        line-height: 1.5;
-        font-size: 1rem;
-
-        .visible-names {
-          font-weight: $font-weight-basic;
-        }
-      }
-    }
-
-    &-actions {
-      display: flex;
-      align-items: center;
-
-      &-comment,
-      &-reply {
-        cursor: pointer;
-        margin-right: 0.8rem;
-        color: $post-primary-color;
-      }
-
-      &-comment-count,
-      &-reply-count {
-        font-size: 1.1rem;
-      }
-
-      &-comment-count {
-        margin-right: 1.2rem;
-      }
-    }
-  }
 }
 
 @include responsive-below(sm) {
@@ -170,23 +105,6 @@
 
       &-icon {
         margin: 0 0.2rem;
-      }
-    }
-
-    &-likes {
-      flex-direction: column;
-
-      &-friends {
-        flex-direction: column;
-        align-items: flex-start;
-
-        &-icons {
-          margin: 1rem 0 1.5rem 0;
-        }
-
-        &-names {
-          margin-bottom: 1rem;
-        }
       }
     }
   }

@@ -91,12 +91,14 @@
   padding-right: 0.5rem;
 
   &-nav {
+    display: inline-block;
     margin-right: 5rem;
     width: $full-width * 0.2 * 2;
     height: $full-height;
 
     &-list {
       height: inherit;
+      justify-content: flex-end;
 
       &-item {
         @include notification-container();
@@ -411,10 +413,6 @@
 
   .header {
     &-content {
-      .header-left {
-        display: none;
-      }
-
       .header-right {
         width: 100%;
 

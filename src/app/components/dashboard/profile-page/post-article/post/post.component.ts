@@ -15,10 +15,4 @@ export class PostComponent {
   @Input() post: Post;
   @Input() currentUser: MockUser;
   commentsVisibility: boolean;
-
-  getLikeFriendsNames(post: Post): string {
-    return post && post.likes
-      ? `${post.likes[0].name} , ${post.likes[1].name}`
-      : '';
-  }
 }

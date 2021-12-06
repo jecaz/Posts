@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-posts',
+  selector: 'posts',
   templateUrl: './posts.component.html',
   styleUrls: [
     '../../../../../../styles/dashboard/profile-page/post-article/posts/posts.component.scss',
@@ -25,7 +25,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.posts$ = this.postService.posts$;
     this.postsLoaded$ = this.postService.loadedPosts$;
-    this.subscription.add(this.postService.fetchData().subscribe());
+    this.subscription.add(this.postService.fetchPosts().subscribe());
   }
 
   ngOnDestroy() {

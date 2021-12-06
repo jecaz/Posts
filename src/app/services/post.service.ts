@@ -39,6 +39,14 @@ export class PostService {
       .pipe(catchError((error) => throwError(error)));
   }
 
+  getPost(postId: number) {
+    return this.http
+      .get<Post>(
+        `${this.apiConfig.backend.endpoints.baseUrl}${this.apiConfig.backend.endpoints.posts}/${postId}`
+      )
+      .pipe(catchError((error) => throwError(error)));
+  }
+
   getPostsState(): Post[] {
     return this._postsSource.getValue();
   }
@@ -51,7 +59,7 @@ export class PostService {
     this._loadedPostsSource.next(loading);
   }
 
-  fetchData(): Observable<any> {
+  fetchPosts(): Observable<any> {
     return forkJoin([
       this.getPosts(),
       this.commentService.getComments(),

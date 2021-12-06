@@ -15,21 +15,17 @@ export class FilterPipe implements PipeTransform {
   // }
 
   transform(value: any, filterValue: string, propertyName?: string[]) {
-    console.log(filterValue, 'filterValue');
     if ((value && value.length === 0) || !filterValue) {
       return value;
     }
     const resultArray = [];
-
     for (const item of value) {
       // case if value array has key:value pairs
       if (typeof propertyName === 'string') {
-        console.log('string');
         if (this.filterItem(item[propertyName], filterValue)) {
           resultArray.push(item);
         }
       } else if (typeof propertyName === 'object') {
-        console.log('obj');
         propertyName.forEach((p) => {
           if (this.filterItem(item[p].toString(), filterValue)) {
             if (resultArray.indexOf(item) === -1) {

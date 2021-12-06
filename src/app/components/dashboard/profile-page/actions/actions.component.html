@@ -1,0 +1,41 @@
+<div class="actions-likes">
+  <div class="actions-likes-friends">
+    <span style="display: flex; align-items: center">
+      <span class="actions-likes-friends-heart-icon"
+        ><i class="far fa-heart"></i
+      ></span>
+      <span *ngIf="post?.likes" class="actions-likes-friends-heart-count">{{
+        post?.likes?.length
+      }}</span>
+    </span>
+    <div *ngIf="post?.likes" class="actions-likes-friends-icons">
+      <ng-container *ngFor="let like of post.likes; let i = index">
+        <img
+          *ngIf="i < 5"
+          [src]="like.icon"
+          alt="User icon"
+          id="{{ 'like1' + (i + 1) }}"
+        />
+      </ng-container>
+    </div>
+    <span *ngIf="post?.likes" class="actions-likes-friends-names">
+      <span class="visible-names">{{ getLikeFriendsNames(post) }}</span
+      >{{ " and" }}<br />
+      <span>{{ post?.likes?.length - 2 }} more liked this</span>
+    </span>
+  </div>
+  <div class="actions-likes-actions">
+    <span class="actions-likes-actions-comment" (click)="toggleVisibility()">
+      <i class="far fa-comment-alt"></i>
+    </span>
+    <span
+      *ngIf="post?.comments?.length > 0"
+      class="actions-likes-actions-comment-count"
+      >{{ post.comments.length }}</span
+    >
+    <span class="actions-likes-actions-reply">
+      <i class="fas fa-retweet"></i>
+    </span>
+    <span class="actions-likes-actions-reply-count">{{ 2 }}</span>
+  </div>
+</div>

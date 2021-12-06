@@ -6,10 +6,17 @@ import { ApiConfig } from '../../config/api-config';
 import { PipesModule } from '../../pipe/pipe.module';
 import { DashboardComponent } from './dashboard.component';
 import { ProfilePageModule } from './profile-page/profile-page.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [DashboardComponent],
-  imports: [CommonModule, RouterModule, ProfilePageModule, PipesModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ProfilePageModule,
+    PipesModule,
+    FormsModule,
+  ],
   providers: [{ provide: ApiConfig, useValue: defaultApiConfig }],
   exports: [DashboardComponent, RouterModule],
 })
