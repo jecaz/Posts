@@ -3,16 +3,14 @@ import { MockUser, User } from '../models/user.model';
 import { ACTIVE_USERS, LOGGED_USER } from '../mockApi.data';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { catchError } from 'rxjs/operators';
+import { ApiConfig } from '../config/api-config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = environment.apiUrl;
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private apiConfig: ApiConfig) {}
 
   getLoggedUser(): MockUser {
     return LOGGED_USER;
@@ -28,7 +26,10 @@ export class UserService {
 
   getUsers(): Observable<User[]> {
     return this.http
-      .get<User[]>(this.apiUrl + '/users')
+      .get<User[]>(
+        this.apiConfig.backend.endpoints.baseUrl +
+          this.apiConfig.backend.endpoints.users
+      )
       .pipe(catchError((error) => throwError(error)));
   }
 }

@@ -18,10 +18,25 @@
           <span class="text-uppercase py-0 px-5">Profile page</span>
           <div id="search" class="d-inline-block position-relative">
             <input
+              #search
               class="header-left-search--input border-0"
               type="text"
               placeholder="Search here people or pages..."
             />
+            <ng-container *ngIf="searchValue && posts$ | async as posts">
+              <ul class="list-group position-absolute w-100 border-bottom">
+                <li
+                  class="list-group-item bg-light text-dark pointer"
+                  *ngFor="
+                    let post of posts
+                      | filter: searchValue:['title', 'username', 'body']
+                  "
+                  (click)="goToPage('post/' + post.id)"
+                >
+                  {{ post.title }}
+                </li>
+              </ul>
+            </ng-container>
           </div>
           <span class="header-left-search--label">Find Friends</span>
         </div>

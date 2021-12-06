@@ -1,10 +1,22 @@
-<ng-container *ngIf="posts$ | async as posts">
-  <div class="card" *ngFor="let post of posts">
-    <post [post]="post" [currentUser]="currentUser"></post>
-  </div>
-  <div class="page-button">
-    <button class="page-button-dot">
-      <i class="fas fa-ellipsis-h page-button-dot-icon"></i>
-    </button>
-  </div>
+<ng-container *ngIf="postsLoaded$ | async; else loading">
+  <ng-container *ngIf="posts$ | async as posts">
+    <div class="card" *ngFor="let post of posts">
+      <post [post]="post" [currentUser]="currentUser"></post>
+    </div>
+    <div class="page-button">
+      <button class="page-button-dot">
+        <i class="fas fa-ellipsis-h page-button-dot-icon"></i>
+      </button>
+    </div>
+  </ng-container>
 </ng-container>
+<ng-template #loading>
+  <div class="row my-5 pt-5">
+    <div class="col text-center">
+      <i
+        class="fas fa-spinner fa-spin text-primary"
+        style="font-size: 40px"
+      ></i>
+    </div>
+  </div>
+</ng-template>

@@ -25,6 +25,10 @@ body {
   border-radius: 50%;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 @include responsive-below(sm) {
   .card {
     margin-top: 1.5rem;

@@ -34,6 +34,11 @@
   &-content {
     width: $full-width - 2;
 
+    .list-group {
+      height: 400px;
+      overflow: auto;
+    }
+
     .header-left {
       width: $full-width * 0.2 * 3;
       height: $full-height;
