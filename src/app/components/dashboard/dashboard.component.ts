@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.subscription.add(this.postService.fetchPosts().subscribe());
     this.posts$ = this.postService.posts$;
     this.currentUser = this.userService.getLoggedUser();
     this.users = this.userService.getActiveUsers();

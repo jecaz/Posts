@@ -5,12 +5,17 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { ApiConfig } from '../config/api-config';
+import { EndpointService } from './endpoint.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient, private apiConfig: ApiConfig) {}
+  constructor(
+    private http: HttpClient,
+    private apiConfig: ApiConfig,
+    private endpointService: EndpointService
+  ) {}
 
   getLoggedUser(): MockUser {
     return LOGGED_USER;
@@ -25,19 +30,26 @@ export class UserService {
   }
 
   getUsers(): Observable<User[]> {
+    const url = this.endpointService.buildUrl(
+      this.apiConfig.backend.endpoints.users
+    );
     return this.http
-      .get<User[]>(
-        this.apiConfig.backend.endpoints.baseUrl +
-          this.apiConfig.backend.endpoints.users
-      )
+      .get<User[]>(url)
       .pipe(catchError((error) => throwError(error)));
   }
 
-  getUser(userId: number) {
+  getUser(id: number) {
+    const url = this.endpointService.buildUrl(
+      this.apiConfig.backend.endpoints.user,
+      {
+        urlParams: {
+          id,
+        },
+      },
+      true
+    );
     return this.http
-      .get<User>(
-        `${this.apiConfig.backend.endpoints.baseUrl}${this.apiConfig.backend.endpoints.users}/${userId}`
-      )
+      .get<User>(url)
       .pipe(catchError((error) => throwError(error)));
   }
 }

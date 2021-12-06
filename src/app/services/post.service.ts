@@ -8,6 +8,7 @@ import { CommentService } from './comment.service';
 import { UserService } from './user.service';
 import { Comment } from '../models/comment.model';
 import { ApiConfig } from '../config/api-config';
+import { EndpointService } from './endpoint.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,7 @@ export class PostService {
     private http: HttpClient,
     private commentService: CommentService,
     private userService: UserService,
+    private endpointService: EndpointService,
     private apiConfig: ApiConfig
   ) {}
 
@@ -31,19 +33,26 @@ export class PostService {
   }
 
   getPosts(): Observable<Post[]> {
+    const url = this.endpointService.buildUrl(
+      this.apiConfig.backend.endpoints.posts
+    );
     return this.http
-      .get<Post[]>(
-        this.apiConfig.backend.endpoints.baseUrl +
-          this.apiConfig.backend.endpoints.posts
-      )
+      .get<Post[]>(url)
       .pipe(catchError((error) => throwError(error)));
   }
 
-  getPost(postId: number) {
+  getPost(id: number) {
+    const url = this.endpointService.buildUrl(
+      this.apiConfig.backend.endpoints.post,
+      {
+        urlParams: {
+          id,
+        },
+      },
+      true
+    );
     return this.http
-      .get<Post>(
-        `${this.apiConfig.backend.endpoints.baseUrl}${this.apiConfig.backend.endpoints.posts}/${postId}`
-      )
+      .get<Post>(url)
       .pipe(catchError((error) => throwError(error)));
   }
 

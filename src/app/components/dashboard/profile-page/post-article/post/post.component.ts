@@ -13,6 +13,5 @@ import { MockUser } from '../../../../../models/user.model';
 })
 export class PostComponent {
   @Input() post: Post;
-  @Input() currentUser: MockUser;
   commentsVisibility: boolean;
 }

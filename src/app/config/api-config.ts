@@ -30,4 +30,9 @@ export interface AppEndpoints {
    *
    */
   users?: string;
+  /**
+   * Get user
+   *
+   */
+  user?: string;
 }
