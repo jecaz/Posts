@@ -1,0 +1,35 @@
+<div class="position-relative ghost">
+  <div
+    *ngFor="let ghost of ghosts.posts"
+    class="ghost-container row border p-4 my-4 bg-light"
+  >
+    <div class="col-2 text-center">
+      <img
+        class="avatar round"
+        [src]="'../../../../assets/ghost-user-avatar.png'"
+        alt="User icon"
+      />
+    </div>
+    <div class="col-10">
+      <h2 class="bg-color"></h2>
+      <h3 class="bg-color"></h3>
+      <p class="bg-color"></p>
+    </div>
+    <div class="col-12 border-top pt-4 mt-4">
+      <div class="row">
+        <div class="col-2 text-center">
+          <div class="fas fa-align-center action-icon"></div>
+        </div>
+        <div class="col-4">
+          <h3 class="bg-color"></h3>
+        </div>
+        <div class="offset-3 col-3 text-right">
+          <div class="fas fa-align-center action-icon"></div>
+          <div class="fas fa-align-center action-icon ml-4"></div>
+        </div>
+      </div>
+
+      <div></div>
+    </div>
+  </div>
+</div>

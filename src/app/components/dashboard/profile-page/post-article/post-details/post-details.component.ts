@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, mergeMap, pluck, switchMap } from 'rxjs/operators';
-import { UserService } from 'src/app/services/user.service';
+import { Ghost } from '../../../../../models/ghost.model';
+import { UserService } from '../../../../../services/user.service';
 import { Post } from '../../../../../models/post.model';
 import { PostService } from '../../../../../services/post.service';
 
@@ -14,6 +15,7 @@ import { PostService } from '../../../../../services/post.service';
 })
 export class PostDetailsComponent implements OnInit {
   post$: Observable<Post>;
+  ghostData$: Observable<Ghost>;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +24,9 @@ export class PostDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.postService.setGhostData({ posts: new Array(1) });
+    this.ghostData$ = this.postService.ghostData$;
+    this.ghostData$.subscribe(console.log);
     this.post$ = this.route.params.pipe(
       pluck('id'),
       switchMap((postId) => {

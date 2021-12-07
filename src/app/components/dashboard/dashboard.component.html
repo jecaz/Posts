@@ -32,7 +32,7 @@
                     let post of posts
                       | filter: searchValue:['title', 'username', 'body']
                   "
-                  (click)="goToPage('post/' + post.id); searchValue = ''"
+                  (click)="goToPostDetails(post)"
                 >
                   {{ post.title }}
                 </li>

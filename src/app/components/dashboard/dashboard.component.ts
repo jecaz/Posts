@@ -5,13 +5,7 @@ import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post.model';
 import { MockUser } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  pluck,
-  tap,
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, pluck, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'dashboard',
@@ -60,6 +54,11 @@ export class DashboardComponent implements OnInit {
       behavior: 'smooth',
       block: 'start',
     });
+  }
+
+  goToPostDetails(post: Post) {
+    this.goToPage(`post/${post.id}`);
+    this.searchValue = '';
   }
 
   goToPage(url?: string) {

@@ -6,7 +6,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./reset";
 @import "dashboard/profile-page/badge-article/badges/badges.component";
-// @import "./dashboard/profile-page/profile-page.component";
 
 html {
   @include font-style(62.5%, "Roboto");

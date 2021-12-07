@@ -9,15 +9,18 @@ import { UserService } from './user.service';
 import { Comment } from '../models/comment.model';
 import { ApiConfig } from '../config/api-config';
 import { EndpointService } from './endpoint.service';
+import { Ghost } from '../models/ghost.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
   // State management
-  private readonly _postsSource = new BehaviorSubject<Post[]>([]);
+  private readonly _postsSource = new BehaviorSubject<Post[]>(null);
   private readonly _loadedPostsSource = new BehaviorSubject<boolean>(false);
+  private readonly _ghostDataSource = new BehaviorSubject<Ghost>(null);
   readonly posts$ = this._postsSource.asObservable();
+  readonly ghostData$ = this._ghostDataSource.asObservable();
   readonly loadedPosts$ = this._loadedPostsSource.asObservable();
 
   constructor(
@@ -56,9 +59,9 @@ export class PostService {
       .pipe(catchError((error) => throwError(error)));
   }
 
-  getPostsState(): Post[] {
-    return this._postsSource.getValue();
-  }
+  // getPostsState(): Post[] {
+  //   return this._postsSource.getValue();
+  // }
 
   private setPostsState(posts: Post[]): void {
     this._postsSource.next(posts);
@@ -66,6 +69,10 @@ export class PostService {
 
   private setLoadedPostsState(loading: boolean): void {
     this._loadedPostsSource.next(loading);
+  }
+
+  setGhostData(ghosts: Ghost) {
+    this._ghostDataSource.next(ghosts);
   }
 
   fetchPosts(): Observable<any> {

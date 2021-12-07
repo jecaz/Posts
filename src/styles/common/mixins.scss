@@ -163,3 +163,12 @@
     @error 'Invalid breakpoint: #{$breakpoint}.';
   }
 }
+
+@mixin background-gradient {
+  background-image: linear-gradient(
+    $base-color 0px,
+    $ghost-color 40px,
+    $base-color 80px
+  );
+  background-size: 80vw;
+}

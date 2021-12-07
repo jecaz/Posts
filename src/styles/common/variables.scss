@@ -86,3 +86,9 @@ $breakpoints: (
   md: 62em,
   lg: 75em,
 );
+
+// ghost
+$base-color: rgba(221, 221, 221, 0.863);
+$ghost-color: #ecebebf1;
+$ghost-color-animation: rgba(255, 255, 255, 0.2);
+$ghost-radius: 3px;

@@ -6,14 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
   constructor() {}
 
-  // transform(postList: Post[], searchValue: string) {
-  //   const items = postList.filter((post) =>
-  //     post.username.toLowerCase().includes(searchValue.toLowerCase())
-  //   );
-  //   console.log(items, 'items');
-  //   return items;
-  // }
-
   transform(value: any, filterValue: string, propertyName?: string[]) {
     if ((value && value.length === 0) || !filterValue) {
       return value;
@@ -39,6 +31,7 @@ export class FilterPipe implements PipeTransform {
         }
       }
     }
+    console.log(resultArray);
     return resultArray;
   }
 

@@ -1,15 +1,15 @@
-<ng-container *ngIf="postsLoaded$ | async; else loading">
-  <ng-container *ngIf="posts$ | async as posts">
-    <div class="card" *ngFor="let post of posts">
-      <post [post]="post"></post>
-    </div>
-    <div class="page-button">
-      <button class="page-button-dot">
-        <i class="fas fa-ellipsis-h page-button-dot-icon"></i>
-      </button>
-    </div>
-  </ng-container>
+<!-- <ng-container *ngIf="postsLoaded$ | async; else loading"> -->
+<ng-container *ngIf="posts$ | async as posts; else ghostTemplate">
+  <div class="card" *ngFor="let post of posts">
+    <post [post]="post"></post>
+  </div>
+  <div class="page-button">
+    <button class="page-button-dot">
+      <i class="fas fa-ellipsis-h page-button-dot-icon"></i>
+    </button>
+  </div>
 </ng-container>
+<!-- </ng-container> -->
 <ng-template #loading>
   <div class="row my-5 pt-5">
     <div class="col text-center">
@@ -19,4 +19,7 @@
       ></i>
     </div>
   </div>
+</ng-template>
+<ng-template #ghostTemplate>
+  <ghost [ghosts]="ghostData$ | async"></ghost>
 </ng-template>

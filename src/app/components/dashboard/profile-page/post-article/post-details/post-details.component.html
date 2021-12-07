@@ -1,3 +1,6 @@
-<div class="card">
-  <post [post]="post$ | async"></post>
+<div class="card" *ngIf="post$ | async as post; else ghostTemplate">
+  <post [post]="post"></post>
 </div>
+<ng-template #ghostTemplate>
+  <ghost [ghosts]="ghostData$ | async"></ghost>
+</ng-template>
