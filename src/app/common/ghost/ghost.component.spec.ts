@@ -8,14 +8,14 @@ describe('GhostComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GhostComponent ]
-    })
-    .compileComponents();
+      declarations: [GhostComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GhostComponent);
     component = fixture.componentInstance;
+    component.ghosts = { posts: new Array(1) };
     fixture.detectChanges();
   });
 

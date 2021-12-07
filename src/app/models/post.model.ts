@@ -2,15 +2,15 @@ import { Badge } from './badge.model';
 import { Comment } from './comment.model';
 
 export interface Post {
-  body: string;
-  id: number;
-  title: string;
-  userId: number;
-  comments: Comment[];
-  badges: Badge[];
-  likes: any[];
-  username: string;
-  timeAgo: number;
+  body?: string;
+  id?: number;
+  title?: string;
+  userId?: number;
+  comments?: Comment[];
+  badges?: Badge[];
+  likes?: any[];
+  username?: string;
+  timeAgo?: number;
 }
 
 export class MockPost {

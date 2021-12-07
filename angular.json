@@ -101,6 +101,11 @@
             "styles": [
               "src/styles/styles.scss"
             ],
+            "codeCoverageExclude": [
+              "**/index.ts",
+              "**/*.model.ts",
+              "**/*config.ts"
+            ],
             "scripts": []
           }
         },
