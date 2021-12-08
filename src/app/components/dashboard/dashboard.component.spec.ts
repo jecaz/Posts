@@ -9,6 +9,10 @@ import { ApiConfig } from '../../config/api-config';
 import { of } from 'rxjs';
 import { Post } from '../../models/post.model';
 import { PostService } from '../../services/post.service';
+import { DebugElement } from '@angular/core';
+import createSpy = jasmine.createSpy;
+import { By } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 const mockLoggedUser = new MockUser({
   id: 1,
@@ -37,17 +41,6 @@ const mockPosts: Post[] = [
   },
 ];
 
-const mockApiConfig: ApiConfig = {
-  backend: {
-    endpoints: {
-      posts: '/posts',
-      post: '/posts/${id}',
-      comments: '/comments',
-      users: '/users',
-    },
-  },
-};
-
 class MockPostService {
   posts$ = of(mockPosts);
   fetchPosts() {
@@ -67,6 +60,8 @@ describe('DashboardComponent', () => {
   let fixture: ComponentFixture<DashboardComponent>;
   let mockUserService: UserService;
   let mockPostService: PostService;
+  let debugElement: DebugElement;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -75,7 +70,6 @@ describe('DashboardComponent', () => {
       providers: [
         { provide: UserService, useClass: MockUserService },
         { provide: PostService, useClass: MockPostService },
-        { provide: ApiConfig, useValue: mockApiConfig },
       ],
     }).compileComponents();
   });
@@ -83,12 +77,28 @@ describe('DashboardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
     fixture.detectChanges();
     mockUserService = TestBed.inject(UserService);
     mockPostService = TestBed.inject(PostService);
+    router = TestBed.inject(Router);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should scroll to the top of the page', () => {
+    const scrollElement = debugElement.query(By.css('.content')).nativeElement;
+    const spyEl = spyOn(scrollElement, 'scrollIntoView');
+    component.goToSection();
+    expect(spyEl).toHaveBeenCalled();
+  });
+
+  it('should navigate to post details page', () => {
+    spyOn(router, 'navigate');
+    component.goToPostDetails(mockPosts[0]);
+    const param = mockPosts[0].id;
+    expect(router.navigate).toHaveBeenCalledWith([`post/${param}`]);
   });
 });

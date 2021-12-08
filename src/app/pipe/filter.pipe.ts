@@ -31,7 +31,6 @@ export class FilterPipe implements PipeTransform {
         }
       }
     }
-    console.log(resultArray);
     return resultArray;
   }
 

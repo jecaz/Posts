@@ -26,7 +26,6 @@ export class PostDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.postService.setGhostData({ posts: new Array(1) });
     this.ghostData$ = this.postService.ghostData$;
-    this.ghostData$.subscribe(console.log);
     this.post$ = this.route.params.pipe(
       pluck('id'),
       switchMap((postId) => {

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MockPost, Post } from '../models/post.model';
 import { POSTS } from '../mockApi.data';
-import { BehaviorSubject, forkJoin, Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, forkJoin, Observable, of, throwError } from 'rxjs';
+import { catchError, concatMap, tap } from 'rxjs/operators';
 import { CommentService } from './comment.service';
 import { UserService } from './user.service';
 import { Comment } from '../models/comment.model';
@@ -104,4 +104,13 @@ export class PostService {
       })
     );
   }
+
+  // fetchData2() {
+  //   const baseUrl = 'https://jsonplaceholder.typicode.com/';
+  //   const urls = [];
+  //   for (let i = 0; i < 100; i++) {
+  //     urls.push(`${baseUrl}posts/${i + 1}/comments`);
+  //   }
+  //   return of(...urls).pipe(concatMap((url: string) => this.http.get(url)));
+  // }
 }
