@@ -11,7 +11,7 @@
   <div class="comment-content col-10">
     <div class="bg-light p-4">
       <div class="font-weight-bold mb-4">{{ comment.name }}</div>
-      <p>{{ comment.body }}</p>
+      <p [innerText]="comment.body"></p>
     </div>
     <div class="pt-3 border-top">
       <actions></actions>

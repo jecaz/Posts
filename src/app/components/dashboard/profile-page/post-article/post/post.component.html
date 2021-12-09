@@ -35,7 +35,7 @@
     </div>
     <div class="post-body pl-4 pt-5">
       <h4 class="font-weight-bold mb-3">{{ post.title }}</h4>
-      <p>{{ post.body }}</p>
+      <p [innerText]="post.body"></p>
     </div>
   </div>
   <div class="pt-4 mt-4 border-top">

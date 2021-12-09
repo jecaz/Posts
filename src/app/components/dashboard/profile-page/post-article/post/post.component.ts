@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, Input } from '@angular/core';
-import { MockPost, Post } from '../../../../../models/post.model';
-import { MockUser } from '../../../../../models/user.model';
+import { Post } from '../../../../../models/post.model';
 
 @Component({
   selector: 'post',

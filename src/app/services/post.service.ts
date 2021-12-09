@@ -104,13 +104,4 @@ export class PostService {
       })
     );
   }
-
-  // fetchData2() {
-  //   const baseUrl = 'https://jsonplaceholder.typicode.com/';
-  //   const urls = [];
-  //   for (let i = 0; i < 100; i++) {
-  //     urls.push(`${baseUrl}posts/${i + 1}/comments`);
-  //   }
-  //   return of(...urls).pipe(concatMap((url: string) => this.http.get(url)));
-  // }
 }
