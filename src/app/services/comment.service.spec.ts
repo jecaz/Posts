@@ -66,4 +66,16 @@ describe('CommentService', () => {
     expect(mockReq.cancelled).toBeFalsy();
     mockReq.flush('');
   });
+
+  it('should be able to get comments by post', () => {
+    spyOn(mockEndpointService, 'buildUrl').and.callThrough();
+    const postId = 1;
+    service.getCommentsByPost(postId).subscribe();
+    const mockReq = httpMock.expectOne((req) => {
+      return req.method === 'GET';
+    });
+    expect(mockEndpointService.buildUrl).toHaveBeenCalled();
+    expect(mockReq.cancelled).toBeFalsy();
+    mockReq.flush('');
+  });
 });

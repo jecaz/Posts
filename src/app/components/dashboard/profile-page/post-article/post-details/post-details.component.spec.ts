@@ -8,7 +8,9 @@ import { from, of } from 'rxjs';
 import { PostService } from '../../../../../services/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../../../services/user.service';
-import { User } from 'src/app/models/user.model';
+import { User } from '../../../../../models/user.model';
+import { CommentService } from '../../../../../services/comment.service';
+import { Comment } from '../../../../../models/comment.model';
 
 const mockPosts: Post[] = [
   {
@@ -24,6 +26,14 @@ const mockPosts: Post[] = [
     title: 'Test title 2',
     userId: 1,
     username: 'Donna Moore',
+  },
+];
+
+const mockComments: Comment[] = [
+  {
+    body: 'Comment body 1',
+    id: 1,
+    postId: 1,
   },
 ];
 
@@ -59,11 +69,18 @@ class MockUserService {
   }
 }
 
+class MockCommentService {
+  getCommentsByPost() {
+    return of(mockComments);
+  }
+}
+
 describe('PostDetailsComponent', () => {
   let component: PostDetailsComponent;
   let fixture: ComponentFixture<PostDetailsComponent>;
   let mockPostService: PostService;
   let mockUserService: UserService;
+  let mockCommentService: CommentService;
   let mockActivatedRoute: ActivatedRoute;
 
   beforeEach(async () => {
@@ -74,6 +91,7 @@ describe('PostDetailsComponent', () => {
         { provide: ApiConfig, useValue: mockApiConfig },
         { provide: PostService, useClass: MockPostService },
         { provide: UserService, useClass: MockUserService },
+        { provide: CommentService, useClass: MockCommentService },
         {
           provide: ActivatedRoute,
           useValue: {
@@ -90,6 +108,7 @@ describe('PostDetailsComponent', () => {
     fixture.detectChanges();
     mockPostService = TestBed.inject(PostService);
     mockUserService = TestBed.inject(UserService);
+    mockCommentService = TestBed.inject(CommentService);
     mockActivatedRoute = TestBed.inject(ActivatedRoute);
   });
 

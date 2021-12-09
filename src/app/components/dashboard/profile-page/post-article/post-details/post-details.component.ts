@@ -6,6 +6,7 @@ import { Ghost } from '../../../../../models/ghost.model';
 import { UserService } from '../../../../../services/user.service';
 import { Post } from '../../../../../models/post.model';
 import { PostService } from '../../../../../services/post.service';
+import { CommentService } from '../../../../../services/comment.service';
 
 @Component({
   selector: 'app-post-details',
@@ -20,7 +21,8 @@ export class PostDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
-    private userService: UserService
+    private userService: UserService,
+    private commentService: CommentService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +37,13 @@ export class PostDetailsComponent implements OnInit {
         return this.userService.getUser(post.userId).pipe(
           map((user) => {
             return { ...post, username: user.name };
+          })
+        );
+      }),
+      mergeMap((post) => {
+        return this.commentService.getCommentsByPost(post.id).pipe(
+          map((comments) => {
+            return { ...post, comments: comments };
           })
         );
       })

@@ -24,4 +24,18 @@ export class CommentService {
       .get<Comment[]>(url)
       .pipe(catchError((error) => throwError(error)));
   }
+
+  getCommentsByPost(postId: number) {
+    const url = this.endpointService.buildUrl(
+      `${this.apiConfig.backend.endpoints.post}${this.apiConfig.backend.endpoints.comments}`,
+      {
+        urlParams: {
+          id: postId,
+        },
+      }
+    );
+    return this.http
+      .get<Comment[]>(url)
+      .pipe(catchError((error) => throwError(error)));
+  }
 }
