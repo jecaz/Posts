@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  environmentName: 'localhost',
+  baseUrl: 'https://jsonplaceholder.typicode.com',
 };
