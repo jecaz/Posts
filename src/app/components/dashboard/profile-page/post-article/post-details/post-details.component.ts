@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { map, mergeMap, pluck, switchMap } from 'rxjs/operators';
 import { Ghost } from '../../../../../models/ghost.model';
 import { UserService } from '../../../../../services/user.service';
@@ -34,16 +34,16 @@ export class PostDetailsComponent implements OnInit {
         return this.postService.getPost(postId);
       }),
       mergeMap((post) => {
-        return this.userService.getUser(post.userId).pipe(
-          map((user) => {
-            return { ...post, username: user.name };
-          })
-        );
-      }),
-      mergeMap((post) => {
-        return this.commentService.getCommentsByPost(post.id).pipe(
-          map((comments) => {
-            return { ...post, comments: comments };
+        return forkJoin([
+          this.userService.getUser(post.userId),
+          this.commentService.getCommentsByPost(post.id),
+        ]).pipe(
+          map((results) => {
+            return {
+              ...post,
+              username: results[0]?.name,
+              comments: results[1],
+            };
           })
         );
       })
